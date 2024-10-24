@@ -30,7 +30,7 @@ abstract contract UserInteractions is LaunchpadStorage, Ownable, LaunchStageModu
         if (state.configuration.ticketToken == address(0)) {
             require(msg.value == totalPrice, "Funds in message should match total required price");
         } else {
-            IERC20(state.configuration.ticketToken).safeTransferFrom(msg.sender, address(this), totalPrice);
+            IERC20(state.configuration.ticketToken).transferFrom(msg.sender, address(this), totalPrice);
         }
 
         setNumberOfConfirmedTickets(msg.sender, totalConfirmed);
@@ -60,7 +60,7 @@ abstract contract UserInteractions is LaunchpadStorage, Ownable, LaunchStageModu
                 (bool sent,) = msg.sender.call{value: refundAmount}("");
                 require(sent, "Failed to send native coin");
             } else {
-                IERC20(state.configuration.ticketToken).safeTransfer(msg.sender, refundAmount);
+                IERC20(state.configuration.ticketToken).transfer(msg.sender, refundAmount);
             }
             emit TokensClaimed(msg.sender, 0, confirmed);
         } else {
@@ -83,14 +83,14 @@ abstract contract UserInteractions is LaunchpadStorage, Ownable, LaunchStageModu
                 (bool sent,) = msg.sender.call{value: ticketPaymentRefundAmount}("");
                 require(sent, "Failed to send native coin");
             } else {
-                IERC20(state.configuration.ticketToken).safeTransfer(msg.sender, ticketPaymentRefundAmount);
+                IERC20(state.configuration.ticketToken).transfer(msg.sender, ticketPaymentRefundAmount);
             }
 
             uint256 tokensPerWinningTicket = state.configuration.launchpadTokensPerWinningTicket;
             uint256 launchpadTokensAmountToSend = nrRedeemableTickets * tokensPerWinningTicket;
 
             if (launchpadTokensAmountToSend > 0) {
-                IERC20(state.configuration.launchpadToken).safeTransfer(msg.sender, launchpadTokensAmountToSend);
+                IERC20(state.configuration.launchpadToken).transfer(msg.sender, launchpadTokensAmountToSend);
             }
 
             emit TokensClaimed(msg.sender, nrRedeemableTickets, nrTicketsToRefund);

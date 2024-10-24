@@ -19,7 +19,11 @@ abstract contract WinnerSelection is LaunchpadStorage, Ownable, LaunchStageModul
         uint256 shufflableWinningTickets = totalWinningTickets - (state.confirmedGuaranteedTickets);
         uint256 lastTicketPosition = state.lastTicketId;
 
-        for (uint256 i = 0; i < batchSize && state.selectWinnersProgress < shufflableWinningTickets && state.selectWinnersProgress <= lastTicketPosition; i++){
+        if (state.selectWinnersProgress == 0) {
+            state.selectWinnersProgress = 1;
+        }
+
+        for (uint256 i = 0; i < batchSize && state.selectWinnersProgress <= shufflableWinningTickets && state.selectWinnersProgress <= lastTicketPosition; i++){
             shuffleSingleTicket(state.selectWinnersProgress, lastTicketPosition);
             state.selectWinnersProgress = state.selectWinnersProgress + 1;
         }
@@ -218,7 +222,6 @@ abstract contract WinnerSelection is LaunchpadStorage, Ownable, LaunchStageModul
     }
 
     function getNumberOfWinningPerUser(address addr) public view returns (uint256) {
-        // TODO: add a check to allow this function to be called only after launchpad has been claimed
         return state.numberOfWinningTicketsPerUser[addr];
     }
 }

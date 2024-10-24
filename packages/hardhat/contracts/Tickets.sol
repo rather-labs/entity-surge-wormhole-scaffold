@@ -74,7 +74,7 @@ abstract contract Tickets is LaunchpadStorage, Ownable, LaunchStageModule {
                 (bool sent,) = owner().call{value: claimableTicketPayment}("");
                 require(sent, "Failed to send native coin");
             } else {
-                IERC20(state.configuration.ticketToken).safeTransfer(owner(), claimableTicketPayment);
+                IERC20(state.configuration.ticketToken).transfer(owner(), claimableTicketPayment);
             }
         }
 
@@ -87,7 +87,7 @@ abstract contract Tickets is LaunchpadStorage, Ownable, LaunchStageModule {
             extraLaunchpadTokens = launchpadTokensBalance - launchpadTokensNeeded;
             // Transfer extra launchpad tokens to owner
             // Assuming launchpadToken is an ERC20 token
-            IERC20(state.configuration.launchpadToken).safeTransfer(owner(), extraLaunchpadTokens);
+            IERC20(state.configuration.launchpadToken).transfer(owner(), extraLaunchpadTokens);
         }
 
         emit TicketPaymentClaimed(claimableTicketPayment, extraLaunchpadTokens);

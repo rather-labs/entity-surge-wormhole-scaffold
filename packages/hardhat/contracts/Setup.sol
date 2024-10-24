@@ -18,9 +18,17 @@ abstract contract SetupModule is LaunchpadStorage, Ownable, LaunchStageModule {
     event WinnerSelectionStartTimeSet(uint256 startTime);
     event ClaimStartTimeSet(uint256 startTime);
 
-    function depositLaunchpadTokens(uint256 totalWinningTickets, bool extra) public onlyOwner beforeWinnerSelection {
+    function depositInitialLaunchpadTokens() public onlyOwner beforeWinnerSelection {
+        depositLaunchpadTokens(state.configuration.numberOfWinningTickets.value, false);
+    }
+
+    function depositExtraLaunchpadTokens(uint256 extraWinningTickets) public onlyOwner beforeWinnerSelection {
+        depositLaunchpadTokens(extraWinningTickets, true);
+    }
+
+    function depositLaunchpadTokens(uint256 totalWinningTickets, bool extra) internal onlyOwner beforeWinnerSelection {
         require(!state.configuration.launchpadTokensDeposited || extra, "Tokens already deposited");
-        require(state.configuration.launchpadTokensDeposited || !extra, "Deposit configured amount before adding extra");
+        require(state.configuration.launchpadTokensDeposited || !extra, "Deposit initial launchpad tokens before adding extra");
 
         if (!extra) {
             require(totalWinningTickets == state.configuration.numberOfWinningTickets.value, "Incorrect deposit amount");
@@ -31,7 +39,7 @@ abstract contract SetupModule is LaunchpadStorage, Ownable, LaunchStageModule {
 
         IERC20 launchpadToken = IERC20(state.configuration.launchpadToken);
         uint256 balanceBefore = launchpadToken.balanceOf(address(this));
-        launchpadToken.safeTransferFrom(msg.sender, address(this), amountNeeded);
+        launchpadToken.transferFrom(msg.sender, address(this), amountNeeded);
         uint256 balanceAfter = launchpadToken.balanceOf(address(this));
         uint256 amountDeposited = balanceAfter - balanceBefore;
 

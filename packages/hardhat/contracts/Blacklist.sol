@@ -48,7 +48,7 @@ abstract contract Blacklist is LaunchpadStorage, Ownable, SetupModule, WinnerSel
                 (bool sent,) = user.call{value: refundAmount}("");
                 require(sent, "Failed to send native coin");
             } else {
-                IERC20(state.configuration.ticketToken).safeTransfer(user, refundAmount);
+                IERC20(state.configuration.ticketToken).transfer(user, refundAmount);
             }
         }
     }

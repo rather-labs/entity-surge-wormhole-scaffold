@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Launchpad: {
-      address: "0xD8a5a9b31c3C0232E196d518E89Fd8bF83AcAd43",
+      address: "0x4EE6eCAD1c2Dae9f525404De8555724e3c35d07B",
       abi: [
         {
           inputs: [
@@ -64,28 +64,6 @@ const deployedContracts = {
           ],
           stateMutability: "nonpayable",
           type: "constructor",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "target",
-              type: "address",
-            },
-          ],
-          name: "AddressEmptyCode",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "account",
-              type: "address",
-            },
-          ],
-          name: "AddressInsufficientBalance",
-          type: "error",
         },
         {
           inputs: [
@@ -191,11 +169,6 @@ const deployedContracts = {
           type: "error",
         },
         {
-          inputs: [],
-          name: "FailedInnerCall",
-          type: "error",
-        },
-        {
           inputs: [
             {
               internalType: "address",
@@ -215,17 +188,6 @@ const deployedContracts = {
             },
           ],
           name: "OwnableUnauthorizedAccount",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "token",
-              type: "address",
-            },
-          ],
-          name: "SafeERC20FailedOperation",
           type: "error",
         },
         {
@@ -715,16 +677,18 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "uint256",
-              name: "totalWinningTickets",
+              name: "extraWinningTickets",
               type: "uint256",
             },
-            {
-              internalType: "bool",
-              name: "extra",
-              type: "bool",
-            },
           ],
-          name: "depositLaunchpadTokens",
+          name: "depositExtraLaunchpadTokens",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "depositInitialLaunchpadTokens",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -1665,7 +1629,8 @@ const deployedContracts = {
         isWinningTicket: "contracts/Blacklist.sol",
         selectWinners: "contracts/Blacklist.sol",
         addUsersToBlacklist: "contracts/Blacklist.sol",
-        depositLaunchpadTokens: "contracts/Blacklist.sol",
+        depositExtraLaunchpadTokens: "contracts/Blacklist.sol",
+        depositInitialLaunchpadTokens: "contracts/Blacklist.sol",
         removeUsersFromBlacklist: "contracts/Blacklist.sol",
         setClaimStartTime: "contracts/Blacklist.sol",
         setConfirmationPeriodStartTime: "contracts/Blacklist.sol",
