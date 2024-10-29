@@ -1,0 +1,45 @@
+{
+  "network": "Mainnet",
+  "chains": {
+    "Arbitrum": {
+      "version": "1.1.0",
+      "mode": "burning",
+      "paused": false,
+      "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
+      "manager": "0xF661aA30F0dC883ef7Fb75782Cb3c4a0E366Baa9",
+      "token": "0x7c720C88Ac55865Eb3B0D8AaC5C24133Ace3309f",
+      "transceivers": {
+        "threshold": 1,
+        "wormhole": {
+          "address": "0xc5daF79ba6474022cDcE7cE7E28c307C62127BaE",
+          "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+        }
+      },
+      "limits": {
+        "outbound": "184467440737.095516150000000000",
+        "inbound": {}
+      },
+      "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+    },
+    "Optimism": {
+      "version": "1.1.0",
+      "mode": "burning",
+      "paused": false,
+      "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
+      "manager": "0xcc25D3AdC45f4Fa416E05A0D91A3402d47d4190f",
+      "token": "0x4037ce79abd7D1206a66df8a5ff56A91e82D957b",
+      "transceivers": {
+        "threshold": 1,
+        "wormhole": {
+          "address": "0x5b1616a42E960250c3b834e2c8C84c320E307d4D",
+          "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+        }
+      },
+      "limits": {
+        "outbound": "184467440737.095516150000000000",
+        "inbound": {}
+      },
+      "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+    }
+  }
+}
