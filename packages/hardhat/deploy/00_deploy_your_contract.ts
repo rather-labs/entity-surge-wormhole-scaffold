@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { Contract } from "ethers";
 import { ethers } from "hardhat";
+import { Launchpad, PeerToken } from "../typechain-types";
 
 /**
  * Deploys a contract named "YourContract" using the deployer account and
@@ -21,12 +21,8 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     You can run the `yarn account` command to check your balance in every network.
   */
   const { deployer } = await hre.getNamedAccounts();
-  const [owner] = await ethers.getSigners();
-  console.log("Owner is", owner.address);
   console.log("Deployer is ", deployer);
   const { deploy } = hre.deployments;
-
-  const MockERC20 = await ethers.getContractFactory("MockToken");
 
   const publicKey = "0x035206f5bad784ae06a16da9e0d47e762a4abfe658f74db40bdfcef72368957891";
   const proof =
@@ -35,25 +31,30 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const launchpadTokensPerWinningTicket = 1;
   const ticketPrice = 1;
 
-  const ticketPaymentToken = await MockERC20.deploy();
-  const launchpadToken = await MockERC20.deploy();
-  await ticketPaymentToken.mint(deployer, ethers.parseUnits("1000", 18));
-  await launchpadToken.mint(deployer, ethers.parseUnits("4000", 18));
-
   const nrWinningTickets = 1000;
   const confirmationPeriodStartTime = Math.round(new Date().getTime() / 1000) + 120;
   const winnerSelectionStartTime = Math.round(new Date().getTime() / 1000) + 200;
   const claimStartTime = Math.round(new Date().getTime() / 1000) + 360;
 
-  const launchpad = await deploy("Launchpad", {
+  const nttToken = await deploy("PeerToken", {
+    from: deployer,
+    // Contract constructor arguments
+    args: ["LCH", "LCH1", deployer, deployer],
+    log: true,
+    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+    // automatically mining the contract deployment transaction. There is no effect on live networks.
+    autoMine: true,
+  });
+
+  const launchpadDeploy = await deploy("Launchpad", {
     from: deployer,
     // Contract constructor arguments
     args: [
       proof,
       publicKey,
-      await launchpadToken.getAddress(),
+      nttToken.address,
       launchpadTokensPerWinningTicket,
-      await ticketPaymentToken.getAddress(),
+      "0x0000000000000000000000000000000000000000",
       ticketPrice,
       nrWinningTickets,
       confirmationPeriodStartTime,
@@ -66,13 +67,13 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  // Approve launchpad contract to spend tokens
-  await ticketPaymentToken.connect(owner).approve(launchpad.address, ethers.MaxUint256);
-  await launchpadToken.connect(owner).approve(launchpad.address, ethers.MaxUint256);
-
   // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>("Launchpad", deployer);
-  console.log("👋 Initial greeting:", await yourContract.getShufflerSeed());
+  const launchpad = await hre.ethers.getContract<Launchpad>("Launchpad", deployer);
+
+  const launchpadToken = await hre.ethers.getContract<PeerToken>("PeerToken", deployer);
+  await launchpadToken.mint(deployer, ethers.parseUnits("4000", 18));
+  await launchpadToken.approve(launchpadDeploy.address, ethers.MaxUint256);
+  console.log("👋 Initial greeting:", await launchpad.getShufflerSeed());
 };
 
 export default deployYourContract;

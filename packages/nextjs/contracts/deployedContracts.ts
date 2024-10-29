@@ -5,9 +5,9 @@
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
-  31337: {
+  421614: {
     Launchpad: {
-      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      address: "0x9aCA4055E9350345FC0838220eCAc9A92FE4258b",
       abi: [
         {
           inputs: [
@@ -1641,66 +1641,114 @@ const deployedContracts = {
         setWinnerSelectionStartTime: "contracts/Blacklist.sol",
       },
     },
-  },
-  421614: {
-    Launchpad: {
-      address: "0xa67ee5bD72608316132BC5211Abb0F7a275e9cAa",
+    PeerToken: {
+      address: "0x1BADbB10EF1bAc87Bb2326A834e5F7B7CFA360c7",
       abi: [
         {
           inputs: [
             {
-              internalType: "bytes",
-              name: "proofZero",
-              type: "bytes",
+              internalType: "string",
+              name: "_name",
+              type: "string",
             },
             {
-              internalType: "bytes",
-              name: "publicKeyBytes",
-              type: "bytes",
-            },
-            {
-              internalType: "address",
-              name: "launchpadTokenId",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "launchpadTokensPerWinningTicket",
-              type: "uint256",
+              internalType: "string",
+              name: "_symbol",
+              type: "string",
             },
             {
               internalType: "address",
-              name: "ticketPaymentToken",
+              name: "_minter",
               type: "address",
             },
             {
-              internalType: "uint256",
-              name: "ticketPrice",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "nrWinningTickets",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "confirmationPeriodStartTime",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "winnerSelectionStartTime",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "claimStartTime",
-              type: "uint256",
+              internalType: "address",
+              name: "_owner",
+              type: "address",
             },
           ],
           stateMutability: "nonpayable",
           type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "caller",
+              type: "address",
+            },
+          ],
+          name: "CallerNotMinter",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "CheckpointUnorderedInsertion",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ECDSAInvalidSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "length",
+              type: "uint256",
+            },
+          ],
+          name: "ECDSAInvalidSignatureLength",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "s",
+              type: "bytes32",
+            },
+          ],
+          name: "ECDSAInvalidSignatureS",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "increasedSupply",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "cap",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20ExceededSafeSupply",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
         },
         {
           inputs: [
@@ -1711,32 +1759,16 @@ const deployedContracts = {
             },
             {
               internalType: "uint256",
-              name: "tokenId",
+              name: "balance",
               type: "uint256",
-            },
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-          ],
-          name: "ERC721IncorrectOwner",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "operator",
-              type: "address",
             },
             {
               internalType: "uint256",
-              name: "tokenId",
+              name: "needed",
               type: "uint256",
             },
           ],
-          name: "ERC721InsufficientApproval",
+          name: "ERC20InsufficientBalance",
           type: "error",
         },
         {
@@ -1747,29 +1779,7 @@ const deployedContracts = {
               type: "address",
             },
           ],
-          name: "ERC721InvalidApprover",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "operator",
-              type: "address",
-            },
-          ],
-          name: "ERC721InvalidOperator",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-          ],
-          name: "ERC721InvalidOwner",
+          name: "ERC20InvalidApprover",
           type: "error",
         },
         {
@@ -1780,7 +1790,7 @@ const deployedContracts = {
               type: "address",
             },
           ],
-          name: "ERC721InvalidReceiver",
+          name: "ERC20InvalidReceiver",
           type: "error",
         },
         {
@@ -1791,18 +1801,92 @@ const deployedContracts = {
               type: "address",
             },
           ],
-          name: "ERC721InvalidSender",
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
           type: "error",
         },
         {
           inputs: [
             {
               internalType: "uint256",
-              name: "tokenId",
+              name: "deadline",
               type: "uint256",
             },
           ],
-          name: "ERC721NonexistentToken",
+          name: "ERC2612ExpiredSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "signer",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+          ],
+          name: "ERC2612InvalidSigner",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "timepoint",
+              type: "uint256",
+            },
+            {
+              internalType: "uint48",
+              name: "clock",
+              type: "uint48",
+            },
+          ],
+          name: "ERC5805FutureLookup",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ERC6372InconsistentClock",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "currentNonce",
+              type: "uint256",
+            },
+          ],
+          name: "InvalidAccountNonce",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidMinterZeroAddress",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidShortString",
           type: "error",
         },
         {
@@ -1828,6 +1912,44 @@ const deployedContracts = {
           type: "error",
         },
         {
+          inputs: [
+            {
+              internalType: "uint8",
+              name: "bits",
+              type: "uint8",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "SafeCastOverflowedUintDowncast",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "str",
+              type: "string",
+            },
+          ],
+          name: "StringTooLong",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "expiry",
+              type: "uint256",
+            },
+          ],
+          name: "VotesExpiredSignature",
+          type: "error",
+        },
+        {
           anonymous: false,
           inputs: [
             {
@@ -1839,13 +1961,13 @@ const deployedContracts = {
             {
               indexed: true,
               internalType: "address",
-              name: "approved",
+              name: "spender",
               type: "address",
             },
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
-              name: "tokenId",
+              name: "value",
               type: "uint256",
             },
           ],
@@ -1858,62 +1980,54 @@ const deployedContracts = {
             {
               indexed: true,
               internalType: "address",
-              name: "owner",
+              name: "delegator",
               type: "address",
             },
             {
               indexed: true,
               internalType: "address",
-              name: "operator",
+              name: "fromDelegate",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "toDelegate",
+              type: "address",
+            },
+          ],
+          name: "DelegateChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "delegate",
               type: "address",
             },
             {
               indexed: false,
-              internalType: "bool",
-              name: "approved",
-              type: "bool",
+              internalType: "uint256",
+              name: "previousVotes",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "newVotes",
+              type: "uint256",
             },
           ],
-          name: "ApprovalForAll",
+          name: "DelegateVotesChanged",
           type: "event",
         },
         {
           anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "startTime",
-              type: "uint256",
-            },
-          ],
-          name: "ClaimStartTimeSet",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "startTime",
-              type: "uint256",
-            },
-          ],
-          name: "ConfirmationPeriodStartTimeSet",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "CreatedNFT",
+          inputs: [],
+          name: "EIP712DomainChanged",
           type: "event",
         },
         {
@@ -1922,43 +2036,11 @@ const deployedContracts = {
             {
               indexed: false,
               internalType: "address",
-              name: "token",
+              name: "newMinter",
               type: "address",
             },
           ],
-          name: "LaunchpadTokenSet",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "amount",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "address",
-              name: "token",
-              type: "address",
-            },
-          ],
-          name: "LaunchpadTokensDeposited",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "amount",
-              type: "uint256",
-            },
-          ],
-          name: "LaunchpadTokensPerWinningTicketSet",
+          name: "NewMinter",
           type: "event",
         },
         {
@@ -1984,146 +2066,6 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: false,
-              internalType: "uint256",
-              name: "randomSeed",
-              type: "uint256",
-            },
-          ],
-          name: "ShufflerInitialized",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "claimedTicketPayment",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "extraLaunchpadTokens",
-              type: "uint256",
-            },
-          ],
-          name: "TicketPaymentClaimed",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "amount",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "address",
-              name: "token",
-              type: "address",
-            },
-          ],
-          name: "TicketPriceSet",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "address",
-              name: "token",
-              type: "address",
-            },
-          ],
-          name: "TicketTokenSet",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "uniqueAddressesAddedCount",
-              type: "uint256",
-            },
-          ],
-          name: "TicketsAdded",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "user",
-              type: "address",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "ticketsConfirmed",
-              type: "uint256",
-            },
-          ],
-          name: "TicketsConfirmed",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "progress",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "total",
-              type: "uint256",
-            },
-          ],
-          name: "TicketsFiltered",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: true,
-              internalType: "address",
-              name: "user",
-              type: "address",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "redeemableTickets",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "refundedTickets",
-              type: "uint256",
-            },
-          ],
-          name: "TokensClaimed",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
               indexed: true,
               internalType: "address",
               name: "from",
@@ -2136,9 +2078,9 @@ const deployedContracts = {
               type: "address",
             },
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
-              name: "tokenId",
+              name: "value",
               type: "uint256",
             },
           ],
@@ -2146,115 +2088,42 @@ const deployedContracts = {
           type: "event",
         },
         {
-          anonymous: false,
-          inputs: [
+          inputs: [],
+          name: "CLOCK_MODE",
+          outputs: [
             {
-              indexed: false,
-              internalType: "address[]",
-              name: "users",
-              type: "address[]",
+              internalType: "string",
+              name: "",
+              type: "string",
             },
           ],
-          name: "UsersBlacklisted",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "address[]",
-              name: "users",
-              type: "address[]",
-            },
-          ],
-          name: "UsersRemovedFromBlacklist",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "startTime",
-              type: "uint256",
-            },
-          ],
-          name: "WinnerSelectionStartTimeSet",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "progress",
-              type: "uint256",
-            },
-            {
-              indexed: false,
-              internalType: "uint256",
-              name: "total",
-              type: "uint256",
-            },
-          ],
-          name: "WinnersSelected",
-          type: "event",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address[]",
-              name: "buyers",
-              type: "address[]",
-            },
-            {
-              internalType: "uint256[]",
-              name: "confirmableTickets",
-              type: "uint256[]",
-            },
-            {
-              internalType: "uint256[]",
-              name: "guaranteedWinning",
-              type: "uint256[]",
-            },
-          ],
-          name: "addTickets",
-          outputs: [],
-          stateMutability: "nonpayable",
+          stateMutability: "view",
           type: "function",
         },
         {
-          inputs: [
+          inputs: [],
+          name: "DOMAIN_SEPARATOR",
+          outputs: [
             {
-              internalType: "address[]",
-              name: "usersList",
-              type: "address[]",
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
             },
           ],
-          name: "addUsersToBlacklist",
-          outputs: [],
-          stateMutability: "nonpayable",
+          stateMutability: "view",
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
+          inputs: [],
+          name: "MAX_SUPPLY",
+          outputs: [
             {
               internalType: "uint256",
-              name: "tokenId",
+              name: "",
               type: "uint256",
             },
           ],
-          name: "approve",
-          outputs: [],
-          stateMutability: "nonpayable",
+          stateMutability: "view",
           type: "function",
         },
         {
@@ -2262,6 +2131,54 @@ const deployedContracts = {
             {
               internalType: "address",
               name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
               type: "address",
             },
           ],
@@ -2277,112 +2194,67 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
-          name: "claimLaunchpadTokens",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "claimNft",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "claimTicketPayment",
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "burn",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
         },
         {
           inputs: [
-            {
-              internalType: "uint256",
-              name: "nrTicketsToConfirm",
-              type: "uint256",
-            },
-          ],
-          name: "confirmTickets",
-          outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "extraWinningTickets",
-              type: "uint256",
-            },
-          ],
-          name: "depositExtraLaunchpadTokens",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "depositInitialLaunchpadTokens",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "batchSize",
-              type: "uint256",
-            },
-          ],
-          name: "filterTickets",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getAddTicketsPeriodEndTime",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "getApproved",
-          outputs: [
             {
               internalType: "address",
-              name: "",
+              name: "account",
               type: "address",
             },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
           ],
-          stateMutability: "view",
+          name: "burnFrom",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
-          inputs: [],
-          name: "getClaimStartTime",
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+            {
+              internalType: "uint32",
+              name: "pos",
+              type: "uint32",
+            },
+          ],
+          name: "checkpoints",
           outputs: [
             {
-              internalType: "uint256",
+              components: [
+                {
+                  internalType: "uint48",
+                  name: "_key",
+                  type: "uint48",
+                },
+                {
+                  internalType: "uint208",
+                  name: "_value",
+                  type: "uint208",
+                },
+              ],
+              internalType: "struct Checkpoints.Checkpoint208",
               name: "",
-              type: "uint256",
+              type: "tuple",
             },
           ],
           stateMutability: "view",
@@ -2390,12 +2262,12 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "getClaimableTicketPayment",
+          name: "clock",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "uint48",
               name: "",
-              type: "uint256",
+              type: "uint48",
             },
           ],
           stateMutability: "view",
@@ -2403,23 +2275,10 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "getLastTicketId",
+          name: "decimals",
           outputs: [
             {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getLaunchStage",
-          outputs: [
-            {
-              internalType: "enum LaunchStageModule.LaunchStage",
+              internalType: "uint8",
               name: "",
               type: "uint8",
             },
@@ -2428,125 +2287,70 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
-          name: "getLaunchpadStageFlags",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "bool",
-                  name: "hasWinnerSelectionProcessStarted",
-                  type: "bool",
-                },
-                {
-                  internalType: "bool",
-                  name: "wereTicketsFiltered",
-                  type: "bool",
-                },
-                {
-                  internalType: "bool",
-                  name: "winnersSelected",
-                  type: "bool",
-                },
-                {
-                  internalType: "bool",
-                  name: "launchpadNfts",
-                  type: "bool",
-                },
-              ],
-              internalType: "struct LaunchpadStorage.Flags",
-              name: "",
-              type: "tuple",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getLaunchpadTokenId",
-          outputs: [
+          inputs: [
             {
               internalType: "address",
-              name: "",
+              name: "delegatee",
               type: "address",
             },
           ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getLaunchpadTokensPerWinningTicket",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
+          name: "delegate",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
           inputs: [
             {
               internalType: "address",
-              name: "owner",
+              name: "delegatee",
               type: "address",
             },
-          ],
-          name: "getNftLaunchpadInfo",
-          outputs: [
             {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "numberOfWinningTickets",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct NFT.LaunchpadNftMetadata",
-              name: "",
-              type: "tuple",
+              internalType: "uint256",
+              name: "nonce",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "expiry",
+              type: "uint256",
+            },
+            {
+              internalType: "uint8",
+              name: "v",
+              type: "uint8",
+            },
+            {
+              internalType: "bytes32",
+              name: "r",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32",
+              name: "s",
+              type: "bytes32",
             },
           ],
-          stateMutability: "view",
+          name: "delegateBySig",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
           inputs: [
             {
               internalType: "address",
-              name: "addr",
+              name: "account",
               type: "address",
             },
           ],
-          name: "getNumberOfConfirmedTickets",
+          name: "delegates",
           outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
             {
               internalType: "address",
-              name: "addr",
-              type: "address",
-            },
-          ],
-          name: "getNumberOfWinningPerUser",
-          outputs: [
-            {
-              internalType: "uint256",
               name: "",
-              type: "uint256",
+              type: "address",
             },
           ],
           stateMutability: "view",
@@ -2554,243 +2358,41 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "getNumberOfWinningTickets",
+          name: "eip712Domain",
           outputs: [
             {
-              components: [
-                {
-                  internalType: "enum LaunchpadStorage.NumberOfWinningTicketsType",
-                  name: "ticketType",
-                  type: "uint8",
-                },
-                {
-                  internalType: "uint256",
-                  name: "value",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct LaunchpadStorage.NumberOfWinningTickets",
-              name: "",
-              type: "tuple",
+              internalType: "bytes1",
+              name: "fields",
+              type: "bytes1",
             },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "user",
-              type: "address",
-            },
-          ],
-          name: "getNumberOfWinningTicketsForAddress",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getShufflerSeed",
-          outputs: [
             {
               internalType: "string",
-              name: "",
+              name: "name",
               type: "string",
             },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
+            {
+              internalType: "string",
+              name: "version",
+              type: "string",
+            },
             {
               internalType: "uint256",
-              name: "ticketPos",
+              name: "chainId",
               type: "uint256",
             },
-          ],
-          name: "getTicketIdFromPos",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getTicketPrice",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
             {
               internalType: "address",
-              name: "addr",
+              name: "verifyingContract",
               type: "address",
             },
-          ],
-          name: "getTicketRangeForAddress",
-          outputs: [
             {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "firstId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "lastId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "guaranteedWinners",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct LaunchpadStorage.TicketRange",
-              name: "",
-              type: "tuple",
+              internalType: "bytes32",
+              name: "salt",
+              type: "bytes32",
             },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getTimeline",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "uint256",
-                  name: "confirmationPeriodStartTime",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "winnerSelectionStartTime",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "claimStartTime",
-                  type: "uint256",
-                },
-              ],
-              internalType: "struct LaunchpadStorage.Timeline",
-              name: "",
-              type: "tuple",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getTokenCounter",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getTotalConfirmedTickets",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getTotalNumberOfTickets",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "addr",
-              type: "address",
-            },
-          ],
-          name: "getTotalNumberOfTicketsForAddress",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "getWinnerSelectionStartTime",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "user",
-              type: "address",
-            },
-          ],
-          name: "getWinningTicketIdsForAddress",
-          outputs: [
             {
               internalType: "uint256[]",
-              name: "",
+              name: "extensions",
               type: "uint256[]",
             },
           ],
@@ -2800,17 +2402,17 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "address",
-              name: "user",
-              type: "address",
+              internalType: "uint256",
+              name: "timepoint",
+              type: "uint256",
             },
           ],
-          name: "hasUserClaimed",
+          name: "getPastTotalSupply",
           outputs: [
             {
-              internalType: "bool",
+              internalType: "uint256",
               name: "",
-              type: "bool",
+              type: "uint256",
             },
           ],
           stateMutability: "view",
@@ -2819,73 +2421,72 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "bytes",
-              name: "proof_bytes",
-              type: "bytes",
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "timepoint",
+              type: "uint256",
             },
           ],
-          name: "initShuffler",
+          name: "getPastVotes",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "getVotes",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_account",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "_amount",
+              type: "uint256",
+            },
+          ],
+          name: "mint",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "address",
-              name: "owner",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "operator",
-              type: "address",
-            },
-          ],
-          name: "isApprovedForAll",
+          inputs: [],
+          name: "minter",
           outputs: [
             {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
               internalType: "address",
-              name: "user",
+              name: "",
               type: "address",
-            },
-          ],
-          name: "isUserBlacklisted",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "ticketId",
-              type: "uint256",
-            },
-          ],
-          name: "isWinningTicket",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
             },
           ],
           stateMutability: "view",
@@ -2899,6 +2500,44 @@ const deployedContracts = {
               internalType: "string",
               name: "",
               type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_owner",
+              type: "address",
+            },
+          ],
+          name: "nonces",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "numCheckpoints",
+          outputs: [
+            {
+              internalType: "uint32",
+              name: "",
+              type: "uint32",
             },
           ],
           stateMutability: "view",
@@ -2920,31 +2559,42 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "ownerOf",
-          outputs: [
-            {
               internalType: "address",
-              name: "",
+              name: "owner",
               type: "address",
             },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
             {
-              internalType: "address[]",
-              name: "usersList",
-              type: "address[]",
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "deadline",
+              type: "uint256",
+            },
+            {
+              internalType: "uint8",
+              name: "v",
+              type: "uint8",
+            },
+            {
+              internalType: "bytes32",
+              name: "r",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32",
+              name: "s",
+              type: "bytes32",
             },
           ],
-          name: "removeUsersFromBlacklist",
+          name: "permit",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
@@ -2960,199 +2610,13 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "from",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-          ],
-          name: "safeTransferFrom",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "from",
-              type: "address",
-            },
-            {
-              internalType: "address",
-              name: "to",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "tokenId",
-              type: "uint256",
-            },
-            {
-              internalType: "bytes",
-              name: "data",
-              type: "bytes",
-            },
-          ],
-          name: "safeTransferFrom",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "batchSize",
-              type: "uint256",
-            },
-          ],
-          name: "selectWinners",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "operator",
-              type: "address",
-            },
-            {
-              internalType: "bool",
-              name: "approved",
-              type: "bool",
-            },
-          ],
-          name: "setApprovalForAll",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "newStartTime",
-              type: "uint256",
-            },
-          ],
-          name: "setClaimStartTime",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "newStartTime",
-              type: "uint256",
-            },
-          ],
-          name: "setConfirmationPeriodStartTime",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "newLaunchpadToken",
+              name: "newMinter",
               type: "address",
             },
           ],
-          name: "setLaunchpadToken",
+          name: "setMinter",
           outputs: [],
           stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "amount",
-              type: "uint256",
-            },
-          ],
-          name: "setLaunchpadTokensPerWinningTicket",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "setNftLaunchpad",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "amount",
-              type: "uint256",
-            },
-          ],
-          name: "setTicketPrice",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "newTicketToken",
-              type: "address",
-            },
-          ],
-          name: "setTicketToken",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "newStartTime",
-              type: "uint256",
-            },
-          ],
-          name: "setWinnerSelectionStartTime",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes4",
-              name: "interfaceId",
-              type: "bytes4",
-            },
-          ],
-          name: "supportsInterface",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
           type: "function",
         },
         {
@@ -3169,22 +2633,40 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
             {
               internalType: "uint256",
-              name: "tokenId",
+              name: "",
               type: "uint256",
             },
           ],
-          name: "tokenURI",
-          outputs: [
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
             {
-              internalType: "string",
-              name: "",
-              type: "string",
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
             },
           ],
-          stateMutability: "view",
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
@@ -3201,12 +2683,18 @@ const deployedContracts = {
             },
             {
               internalType: "uint256",
-              name: "tokenId",
+              name: "value",
               type: "uint256",
             },
           ],
           name: "transferFrom",
-          outputs: [],
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
           stateMutability: "nonpayable",
           type: "function",
         },
@@ -3223,59 +2711,37 @@ const deployedContracts = {
           stateMutability: "nonpayable",
           type: "function",
         },
-        {
-          inputs: [],
-          name: "wereLaunchpadTokensDeposited",
-          outputs: [
-            {
-              internalType: "bool",
-              name: "",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
       ],
       inheritedFunctions: {
-        owner: "contracts/Blacklist.sol",
-        renounceOwnership: "contracts/Blacklist.sol",
-        transferOwnership: "contracts/Blacklist.sol",
-        addTickets: "contracts/UserInteractions.sol",
-        claimTicketPayment: "contracts/UserInteractions.sol",
-        getAddTicketsPeriodEndTime: "contracts/UserInteractions.sol",
-        getClaimStartTime: "contracts/UserInteractions.sol",
-        getLastTicketId: "contracts/UserInteractions.sol",
-        getLaunchStage: "contracts/Blacklist.sol",
-        getLaunchpadStageFlags: "contracts/Blacklist.sol",
-        getTotalConfirmedTickets: "contracts/UserInteractions.sol",
-        getTotalNumberOfTickets: "contracts/UserInteractions.sol",
-        getTotalNumberOfTicketsForAddress: "contracts/UserInteractions.sol",
-        getWinnerSelectionStartTime: "contracts/UserInteractions.sol",
-        claimLaunchpadTokens: "contracts/UserInteractions.sol",
-        confirmTickets: "contracts/UserInteractions.sol",
-        filterTickets: "contracts/Blacklist.sol",
-        getNumberOfConfirmedTickets: "contracts/Blacklist.sol",
-        getNumberOfWinningPerUser: "contracts/Blacklist.sol",
-        getNumberOfWinningTicketsForAddress: "contracts/Blacklist.sol",
-        getTicketIdFromPos: "contracts/Blacklist.sol",
-        getTicketRangeForAddress: "contracts/Blacklist.sol",
-        getWinningTicketIdsForAddress: "contracts/Blacklist.sol",
-        hasUserClaimed: "contracts/UserInteractions.sol",
-        isUserBlacklisted: "contracts/Blacklist.sol",
-        isWinningTicket: "contracts/Blacklist.sol",
-        selectWinners: "contracts/Blacklist.sol",
-        addUsersToBlacklist: "contracts/Blacklist.sol",
-        depositExtraLaunchpadTokens: "contracts/Blacklist.sol",
-        depositInitialLaunchpadTokens: "contracts/Blacklist.sol",
-        removeUsersFromBlacklist: "contracts/Blacklist.sol",
-        setClaimStartTime: "contracts/Blacklist.sol",
-        setConfirmationPeriodStartTime: "contracts/Blacklist.sol",
-        setLaunchpadToken: "contracts/Blacklist.sol",
-        setLaunchpadTokensPerWinningTicket: "contracts/Blacklist.sol",
-        setTicketPrice: "contracts/Blacklist.sol",
-        setTicketToken: "contracts/Blacklist.sol",
-        setWinnerSelectionStartTime: "contracts/Blacklist.sol",
+        CLOCK_MODE: "contracts/BaseToken.sol",
+        DOMAIN_SEPARATOR: "contracts/BaseToken.sol",
+        MAX_SUPPLY: "contracts/BaseToken.sol",
+        allowance: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        approve: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        balanceOf: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        checkpoints: "contracts/BaseToken.sol",
+        clock: "contracts/BaseToken.sol",
+        decimals: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        delegate: "contracts/BaseToken.sol",
+        delegateBySig: "contracts/BaseToken.sol",
+        delegates: "contracts/BaseToken.sol",
+        eip712Domain: "contracts/BaseToken.sol",
+        getPastTotalSupply: "contracts/BaseToken.sol",
+        getPastVotes: "contracts/BaseToken.sol",
+        getVotes: "contracts/BaseToken.sol",
+        name: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        nonces: "contracts/BaseToken.sol",
+        numCheckpoints: "contracts/BaseToken.sol",
+        permit: "contracts/BaseToken.sol",
+        symbol: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        totalSupply: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        transfer: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        transferFrom: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        burn: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        burnFrom: "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol",
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
       },
     },
   },
