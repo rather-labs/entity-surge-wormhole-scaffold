@@ -124,9 +124,13 @@ export const WriteOnlyFunctionForm = ({
             }`}
             data-tip={`${writeDisabled && "Wallet not connected or in the wrong network"}`}
           >
-            <button className="btn btn-secondary btn-sm" disabled={writeDisabled || isPending} onClick={handleWrite}>
+            <button
+              className="btn btn-secondary self-end md:self-start py-3 bg-accent border-0 hover:bg-base-300"
+              disabled={writeDisabled || isPending}
+              onClick={handleWrite}
+            >
               {isPending && <span className="loading loading-spinner loading-xs"></span>}
-              Send 💸
+              Send
             </button>
           </div>
         </div>

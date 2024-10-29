@@ -79,14 +79,14 @@ export const ReadOnlyFunctionForm = ({
       <div className="flex flex-col md:flex-row justify-between gap-2 flex-wrap">
         <div className="flex-grow w-full md:max-w-[80%]">
           {result !== null && result !== undefined && (
-            <div className="bg-secondary rounded-3xl text-sm px-4 py-1.5 break-words overflow-auto">
+            <div className="bg-transparent text-sm px-4 py-1.5 break-words overflow-auto">
               <p className="font-bold m-0 mb-1">Result:</p>
               <pre className="whitespace-pre-wrap break-words">{displayTxResult(result, "sm")}</pre>
             </div>
           )}
         </div>
         <button
-          className="btn btn-secondary btn-sm self-end md:self-start"
+          className="btn btn-secondary self-end md:self-start py-3 bg-accent border-0 hover:bg-base-300"
           onClick={async () => {
             const { data } = await refetch();
             setResult(data);
@@ -94,7 +94,7 @@ export const ReadOnlyFunctionForm = ({
           disabled={isFetching}
         >
           {isFetching && <span className="loading loading-spinner loading-xs"></span>}
-          Read 📡
+          Read
         </button>
       </div>
     </div>
