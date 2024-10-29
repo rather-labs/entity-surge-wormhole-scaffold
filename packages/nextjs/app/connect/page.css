@@ -1,0 +1,30 @@
+.wormhole-wrapper [class*="appContent"] > [class*="spacer"] > [class*="container"] {
+  display: none;;
+}
+
+.wormhole-wrapper .MuiPaper-rounded {
+  border-radius: 0;
+}
+
+.wormhole-wrapper .MuiCard-root {
+  box-shadow: none;
+  background-color: #053834 !important;
+}
+
+.wormhole-wrapper .MuiButton-root {
+  border-radius: 0;
+}
+
+#asset-picker .MuiList-padding .MuiListItemButton-root {
+  border-radius: 0;
+}
+
+#asset-picker .MuiOutlinedInput-notchedOutline {
+  border-radius: 0 !important;
+}
+
+#asset-picker .MuiPopover-paper,
+#asset-picker .MuiPopover-paper .MuiCard-root {
+  border-radius: 0;
+  background: #212638 !important;
+}
