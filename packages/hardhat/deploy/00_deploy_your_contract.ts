@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { ethers } from "hardhat";
-import { Launchpad, PeerToken } from "../typechain-types";
+import { Launchpad, LaunchpadToken } from "../typechain-types";
 
 /**
  * Deploys a contract named "YourContract" using the deployer account and
@@ -36,7 +36,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const winnerSelectionStartTime = Math.round(new Date().getTime() / 1000) + 200;
   const claimStartTime = Math.round(new Date().getTime() / 1000) + 360;
 
-  const nttToken = await deploy("PeerToken", {
+  const launchpadTokenDeploy = await deploy("LaunchpadToken", {
     from: deployer,
     // Contract constructor arguments
     args: ["LCH", "LCH1", deployer, deployer],
@@ -52,7 +52,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     args: [
       proof,
       publicKey,
-      nttToken.address,
+      launchpadTokenDeploy.address,
       launchpadTokensPerWinningTicket,
       "0x0000000000000000000000000000000000000000",
       ticketPrice,
@@ -70,7 +70,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   // Get the deployed contract to interact with it after deploying.
   const launchpad = await hre.ethers.getContract<Launchpad>("Launchpad", deployer);
 
-  const launchpadToken = await hre.ethers.getContract<PeerToken>("PeerToken", deployer);
+  const launchpadToken = await hre.ethers.getContract<LaunchpadToken>("LaunchpadToken", deployer);
   await launchpadToken.mint(deployer, ethers.parseUnits("4000", 18));
   await launchpadToken.approve(launchpadDeploy.address, ethers.MaxUint256);
   console.log("👋 Initial greeting:", await launchpad.getShufflerSeed());

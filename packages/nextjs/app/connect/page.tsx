@@ -12,10 +12,21 @@ import "./page.css";
 import "./page.css";
 import "./page.css";
 import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
+import "./page.css";
 import type { WormholeConnectConfig, WormholeConnectTheme } from "@wormhole-foundation/wormhole-connect";
 // eslint-disable-next-line prettier/prettier
 import WormholeConnect, { nttRoutes } from "@wormhole-foundation/wormhole-connect";
 import './page.css';
+import deployedContracts from "~~/contracts/deployedContracts";
 
 /* export const metadata = getMetadata({
   title: "Entity Surge + Wormhole Connect",
@@ -37,11 +48,11 @@ const wormholeConfig: WormholeConnectConfig = {
   routes: [
     ...nttRoutes({
       tokens: {
-        NTTTT: [
+        LNCH: [
           {
-            chain: "Sepolia",
+            chain: "ArbitrumSepolia",
             manager: "0xE2A2bedF4E404A1CCE742AcC08abBedf2c51C4dF",
-            token: "0xA0e4C6FA5dFc8d68C06C4Caefa0439B4dFC2F697",
+            token: deployedContracts["421614"].LaunchpadToken.address,
             transceiver: [
               {
                 address: "0xccd630AD8030694eDe09d90991edff96ADcdBB61",
@@ -50,9 +61,9 @@ const wormholeConfig: WormholeConnectConfig = {
             ],
           },
           {
-            chain: "ArbitrumSepolia",
+            chain: "Arbitrum",
             manager: "0xFb9d0D37aEe1706A8c8E722e8Bc843fb48978969",
-            token: "0x183Ae4A056566803a10d7FDF85b723FcCd54b926",
+            token: deployedContracts["42161"].LaunchpadToken.address,
             transceiver: [
               {
                 address: "0x1a46812208707D009D1E871453Fb62d76d118A0f",
