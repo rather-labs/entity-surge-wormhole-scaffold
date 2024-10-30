@@ -1,17 +1,17 @@
 {
   "network": "Mainnet",
   "chains": {
-    "Optimism": {
+    "Arbitrum": {
       "version": "1.1.0",
       "mode": "burning",
       "paused": false,
       "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
-      "manager": "0x7304F746Ee13e6921661F52358BB473bB95E55AD",
-      "token": "0x4037ce79abd7D1206a66df8a5ff56A91e82D957b",
+      "manager": "0x78F4D98229a942c302e867F05290A1d278072A58",
+      "token": "0x7c720C88Ac55865Eb3B0D8AaC5C24133Ace3309f",
       "transceivers": {
         "threshold": 1,
         "wormhole": {
-          "address": "0xedA8966824db42946B979f75B4EF652D2eFB594a",
+          "address": "0x8F9C8bfd67Bb722c8804E514e370308AC39aC897",
           "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
         }
       },
@@ -21,17 +21,17 @@
       },
       "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
     },
-    "Arbitrum": {
+    "Polygon": {
       "version": "1.1.0",
       "mode": "burning",
       "paused": false,
       "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
-      "manager": "0xfb71BCfe09708EB650FDa504c166cF2363DD1Bc1",
-      "token": "0x7c720C88Ac55865Eb3B0D8AaC5C24133Ace3309f",
+      "manager": "0x012C5E801976A5cD33Eb37021d46ffcA233cF77A",
+      "token": "0xCF775D98612D22bC739d052DC9aC395ae0Eef2C6",
       "transceivers": {
         "threshold": 1,
         "wormhole": {
-          "address": "0x617CA3331ec1764cA89570f05e3Dfaf8ED6258D3",
+          "address": "0x0E5fC428B61E397B294e8bb077baB47Be45c0E9e",
           "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
         }
       },

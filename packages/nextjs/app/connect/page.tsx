@@ -13,11 +13,11 @@ import deployment from "~~/contracts/deployment.json";
 const wormholeConfig: WormholeConnectConfig = {
   network: "Mainnet", // from deployment.json of the NTT deployment directory
   //networks: ['sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'], // from https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/chains.ts#L170
-  chains: ["Arbitrum", "Optimism"],
+  chains: ["Arbitrum", "Polygon"],
   // tokens: ['FTTsep', 'FTTsol'],  // this will limit the available tokens that can be transferred to the other chain
   // routes: ['nttManual'], // this will limit the available routes - from https://github.com/wormhole-foundation/wormhole-connect/blob/d7a6b67b18db2c8eb4a249d19ef77d0174deffbe/wormhole-connect/src/config/types.ts#L70
   rpcs: {
-    Optimism: "https://mainnet.optimism.io",
+    Polygon: "https://polygon.llamarpc.com",
     Arbitrum: "https://arb1.arbitrum.io/rpc",
   },
 
@@ -37,12 +37,12 @@ const wormholeConfig: WormholeConnectConfig = {
             ],
           },
           {
-            chain: "Optimism",
-            manager: deployment.chains.Optimism.manager,
-            token: deployment.chains.Optimism.token,
+            chain: "Polygon",
+            manager: deployment.chains.Polygon.manager,
+            token: deployment.chains.Polygon.token,
             transceiver: [
               {
-                address: deployment.chains.Optimism.transceivers.wormhole.address,
+                address: deployment.chains.Polygon.transceivers.wormhole.address,
                 type: "wormhole",
               },
             ],
@@ -56,11 +56,11 @@ const wormholeConfig: WormholeConnectConfig = {
     LNCHopt: {
       key: "LNCHopt",
       symbol: "LNCH",
-      nativeChain: "Optimism", // will be shown as native only on this chain, otherwise as "Wormhole wrapped"
+      nativeChain: "Polygon", // will be shown as native only on this chain, otherwise as "Wormhole wrapped"
       displayName: "LNCH (OP)", // name that is displayed in the Route
       tokenId: {
-        chain: "Optimism",
-        address: deployment.chains.Optimism.token, // token address
+        chain: "Polygon",
+        address: deployment.chains.Polygon.token, // token address
       },
       coinGeckoId: "test",
       icon: "https://wormhole.com/token.png",

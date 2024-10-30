@@ -6,12 +6,12 @@
       "mode": "burning",
       "paused": false,
       "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
-      "manager": "0xF661aA30F0dC883ef7Fb75782Cb3c4a0E366Baa9",
+      "manager": "0x78F4D98229a942c302e867F05290A1d278072A58",
       "token": "0x7c720C88Ac55865Eb3B0D8AaC5C24133Ace3309f",
       "transceivers": {
         "threshold": 1,
         "wormhole": {
-          "address": "0xc5daF79ba6474022cDcE7cE7E28c307C62127BaE",
+          "address": "0x8F9C8bfd67Bb722c8804E514e370308AC39aC897",
           "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
         }
       },
@@ -21,17 +21,17 @@
       },
       "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
     },
-    "Optimism": {
+    "Polygon": {
       "version": "1.1.0",
       "mode": "burning",
       "paused": false,
       "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
-      "manager": "0xcc25D3AdC45f4Fa416E05A0D91A3402d47d4190f",
-      "token": "0x4037ce79abd7D1206a66df8a5ff56A91e82D957b",
+      "manager": "0x012C5E801976A5cD33Eb37021d46ffcA233cF77A",
+      "token": "0xCF775D98612D22bC739d052DC9aC395ae0Eef2C6",
       "transceivers": {
         "threshold": 1,
         "wormhole": {
-          "address": "0x5b1616a42E960250c3b834e2c8C84c320E307d4D",
+          "address": "0x0E5fC428B61E397B294e8bb077baB47Be45c0E9e",
           "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
         }
       },
