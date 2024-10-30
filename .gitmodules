@@ -1,0 +1,3 @@
+[submodule "wh-token"]
+	path = wh-token
+	url = https://github.com/wormhole-foundation/example-native-token-transfers

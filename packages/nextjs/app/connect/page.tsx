@@ -1,9 +1,9 @@
 "use client";
 
-import deployment from "./deployment.json";
 import "./page.css";
 import WormholeConnect, { nttRoutes } from "@wormhole-foundation/wormhole-connect";
 import type { WormholeConnectConfig, WormholeConnectTheme } from "@wormhole-foundation/wormhole-connect";
+import deployment from "~~/contracts/deployment.json";
 
 /* export const metadata = getMetadata({
   title: "Entity Surge + Wormhole Connect",

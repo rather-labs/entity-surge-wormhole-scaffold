@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   10: {
     Launchpad: {
-      address: "0x0c84573bC4b5eFdb7624089AB17A3C2982cf0D6D",
+      address: "0xFE0CA905DD76350E90f032c56c6AEC1BE95FE00c",
       abi: [
         {
           inputs: [
@@ -5487,7 +5487,7 @@ const deployedContracts = {
   },
   42161: {
     Launchpad: {
-      address: "0x5e5cad653BD7F51B723d2045308c8F2d95d01b80",
+      address: "0x5cFFea16D8AA4672EAabc4Aa6e3b4329cD107Df4",
       abi: [
         {
           inputs: [
