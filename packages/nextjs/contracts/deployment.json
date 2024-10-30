@@ -1,1 +1,45 @@
-wormhole-setup/deployment.json
+{
+  "network": "Mainnet",
+  "chains": {
+    "Optimism": {
+      "version": "1.1.0",
+      "mode": "burning",
+      "paused": false,
+      "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
+      "manager": "0x1BADbB10EF1bAc87Bb2326A834e5F7B7CFA360c7",
+      "token": "0x4037ce79abd7D1206a66df8a5ff56A91e82D957b",
+      "transceivers": {
+        "threshold": 1,
+        "wormhole": {
+          "address": "0x076B2d796505b60091F8ef58c2Aaebe3c8E9336B",
+          "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+        }
+      },
+      "limits": {
+        "outbound": "184467440737.095516150000000000",
+        "inbound": {}
+      },
+      "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+    },
+    "Arbitrum": {
+      "version": "1.1.0",
+      "mode": "burning",
+      "paused": false,
+      "owner": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af",
+      "manager": "0x17bc0Dab88eC00F93F117323959E2B4D00C7e05a",
+      "token": "0x7c720C88Ac55865Eb3B0D8AaC5C24133Ace3309f",
+      "transceivers": {
+        "threshold": 1,
+        "wormhole": {
+          "address": "0x3E134AFE4eEae6812475DF80fA1afFF21849E982",
+          "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+        }
+      },
+      "limits": {
+        "outbound": "184467440737.095516150000000000",
+        "inbound": {}
+      },
+      "pauser": "0xbF9f1CA6dEaA8fB1B33f72218fbfD405Cdd450Af"
+    }
+  }
+}
