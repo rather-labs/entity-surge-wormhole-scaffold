@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 NETWORK_1=arbitrum
-$NETWORK_1U=Arbitrum
+NETWORK_1U=Arbitrum
 NETWORK_2=polygon
 NETWORK_2U=Polygon
 
