@@ -2,19 +2,8 @@
 
 // import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
 import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
-import "./page.css";
 import type { WormholeConnectConfig, WormholeConnectTheme } from "@wormhole-foundation/wormhole-connect";
-// eslint-disable-next-line prettier/prettier
 import WormholeConnect, { nttRoutes } from "@wormhole-foundation/wormhole-connect";
-import './page.css';
 
 /* export const metadata = getMetadata({
   title: "Entity Surge + Wormhole Connect",
