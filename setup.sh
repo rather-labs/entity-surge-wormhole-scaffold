@@ -25,6 +25,7 @@ rm -f deployment.json
 ntt init Mainnet
 ntt add-chain $NETWORK_1U --latest --mode burning --token $TOKEN_1 --skip-verify
 ntt add-chain $NETWORK_2U --latest --mode burning --token $TOKEN_2 --skip-verify
+ntt push
 cp deployment.json ../packages/nextjs/contracts/deployment.json
 cp deployment.json ../packages/hardhat/deploy/deployment.json
 cd ..
