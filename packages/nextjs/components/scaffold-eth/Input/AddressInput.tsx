@@ -90,12 +90,12 @@ export const AddressInput = ({ value, name, placeholder, onChange, disabled }: C
       prefix={
         ensName ? (
           <div className="flex bg-base-300 rounded-l-full items-center">
-            {isEnsAvatarLoading && <div className="skeleton bg-base-200 w-[35px] h-[35px]  shrink-0"></div>}
+            {isEnsAvatarLoading && <div className="skeleton bg-base-200 w-[35px] h-[35px] shrink-0"></div>}
             {ensAvatar ? (
               <span className="w-[35px]">
                 {
                   // eslint-disable-next-line
-                  <img className="w-full " src={ensAvatar} alt={`${ensAddress} avatar`} />
+                  <img className="w-full" src={ensAvatar} alt={`${ensAddress} avatar`} />
                 }
               </span>
             ) : null}
@@ -104,7 +104,7 @@ export const AddressInput = ({ value, name, placeholder, onChange, disabled }: C
         ) : (
           (isEnsNameLoading || isEnsAddressLoading) && (
             <div className="flex bg-base-300 rounded-l-full items-center gap-2 pr-2">
-              <div className="skeleton bg-base-200 w-[35px] h-[35px]  shrink-0"></div>
+              <div className="skeleton bg-base-200 w-[35px] h-[35px] shrink-0"></div>
               <div className="skeleton bg-base-200 h-3 w-20"></div>
             </div>
           )
