@@ -20,6 +20,7 @@ echo $TOKEN_1
 echo "Setting up Wormhole NTT for Launchpad tokens ($TOKEN_1 / $TOKEN_2)."
 
 cd wh-token
+yarn install
 rm -f deployment.json
 ntt init Mainnet
 ntt add-chain $NETWORK_1U --latest --mode burning --token $TOKEN_1 --skip-verify
