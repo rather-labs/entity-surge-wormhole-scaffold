@@ -83,10 +83,3 @@ export RPC_URL="<rpc_url>"
 
 cast send "$TOKEN_SMARTCONTRACT_ADDRESS" "setMinter(address)" "$NTT_MANAGER_ADDRESS" --private-key "$PRIVATE_KEY" --rpc-url "$RPC_URL"
 ```
-
-
-
-
-
-
-
