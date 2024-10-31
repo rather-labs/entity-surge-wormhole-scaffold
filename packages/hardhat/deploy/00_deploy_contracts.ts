@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { LaunchpadToken } from "../typechain-types";
-import deployments from "../deployments/deployment.json";
+import { ethers } from "hardhat";
 
 const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
@@ -29,7 +29,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  await deploy("Launchpad", {
+  const launchpadDeploy = await deploy("Launchpad", {
     from: deployer,
     // Contract constructor arguments
     args: [
@@ -51,9 +51,8 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   });
 
   const launchpadToken = await hre.ethers.getContract<LaunchpadToken>("LaunchpadToken", deployer);
-
-  const network = hre.network.name.toLowerCase().includes("optimism") ? "Optimism" : "Arbitrum";
-  await launchpadToken.setMinter(deployments.chains[network].manager);
+  await launchpadToken.mint(deployer, ethers.parseUnits("4000", 18));
+  await launchpadToken.approve(launchpadDeploy.address, ethers.MaxUint256);
   console.log("Launchpad + Token deployed successfully!");
 };
 
