@@ -15,9 +15,9 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const ticketPrice = 1;
 
   const nrWinningTickets = 1000;
-  const confirmationPeriodStartTime = Math.round(new Date().getTime() / 1000) + 120;
-  const winnerSelectionStartTime = Math.round(new Date().getTime() / 1000) + 200;
-  const claimStartTime = Math.round(new Date().getTime() / 1000) + 360;
+  const confirmationPeriodStartTime = Math.round(new Date().getTime() / 1000) + 500;
+  const winnerSelectionStartTime = Math.round(new Date().getTime() / 1000) + 700;
+  const claimStartTime = Math.round(new Date().getTime() / 1000) + 860;
 
   const launchpadTokenDeploy = await deploy("LaunchpadToken", {
     from: deployer,
