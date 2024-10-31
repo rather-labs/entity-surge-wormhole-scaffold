@@ -14,7 +14,7 @@ const textSizeMap = {
   "2xs": "text-[11px]",
   xs: "text-xs",
   sm: "text-sm",
-  base: "text-base",
+  base: "text-success",
   lg: "text-lg",
   xl: "text-xl",
   "2xl": "text-2xl",
@@ -116,7 +116,7 @@ export const Address = ({
     return (
       <div className="flex items-center">
         <div
-          className="flex-shrink-0 skeleton rounded-full"
+          className="flex-shrink-0 skeleton"
           style={{
             width: (blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"],
             height: (blockieSizeMap[blockieSize] * 24) / blockieSizeMap["base"],
@@ -177,7 +177,7 @@ export const Address = ({
             </AddressLinkWrapper>
           </span>
           <AddressCopyIcon
-            className={`ml-1 text-sky-600 ${copyIconSizeMap[addressSize]} cursor-pointer`}
+            className={`ml-1 text-accent ${copyIconSizeMap[addressSize]} cursor-pointer`}
             address={checkSumAddress}
           />
         </div>
