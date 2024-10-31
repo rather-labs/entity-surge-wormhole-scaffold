@@ -21,5 +21,7 @@ node_modules
 
 # cli
 dist
-packages/hardhat/deployments
+
+# ignore deployment files
+packages/hardhat/deployments/
 packages/nextjs/contracts/deployedContracts.ts
