@@ -1,10 +1,13 @@
 #!/bin/zsh
 
+# Clean up step
+rm -rf packages/hardhat/deployments/* packages/nextjs/contracts/deployedContracts.ts
+touch packages/nextjs/contracts/deployedContracts.ts
 
 NETWORK_1=arbitrum
 NETWORK_1U=Arbitrum
-NETWORK_2=polygon
-NETWORK_2U=Polygon
+NETWORK_2=optimism
+NETWORK_2U=Optimism
 
 echo "Deploying Launchpad token on $NETWORK_2U chain."
 
@@ -29,6 +32,6 @@ ntt add-chain $NETWORK_2U --latest --mode burning --token $TOKEN_2 --skip-verify
 ntt push
 cp deployment.json ../packages/nextjs/contracts/deployment.json
 cp deployment.json ../packages/hardhat/deploy/deployment.json
-cd ..
+cd -
 yarn deploy --tags SetMinter --network $NETWORK_1
 yarn deploy --tags SetMinter --network $NETWORK_2

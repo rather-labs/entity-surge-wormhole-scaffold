@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
 import { LaunchpadToken } from "../typechain-types";
-import deployments from "./deployment.json";
+import deployments from "../deployments/deployment.json";
 
 const setMinter: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();

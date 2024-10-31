@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { ethers } from "hardhat";
 import { LaunchpadToken } from "../typechain-types";
+import deployments from "../deployments/deployment.json";
 
 const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deployer } = await hre.getNamedAccounts();
@@ -15,21 +15,21 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const ticketPrice = 1;
 
   const nrWinningTickets = 1000;
-  const confirmationPeriodStartTime = Math.round(new Date().getTime() / 1000) + 500;
-  const winnerSelectionStartTime = Math.round(new Date().getTime() / 1000) + 700;
-  const claimStartTime = Math.round(new Date().getTime() / 1000) + 860;
+  const confirmationPeriodStartTime = Math.round(new Date().getTime() / 1000) + 120;
+  const winnerSelectionStartTime = Math.round(new Date().getTime() / 1000) + 200;
+  const claimStartTime = Math.round(new Date().getTime() / 1000) + 360;
 
   const launchpadTokenDeploy = await deploy("LaunchpadToken", {
     from: deployer,
     // Contract constructor arguments
-    args: ["LCH", "LCH1", deployer, deployer],
+    args: ["LNCH", "LNCH", deployer, deployer],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
-  const launchpadDeploy = await deploy("Launchpad", {
+  await deploy("Launchpad", {
     from: deployer,
     // Contract constructor arguments
     args: [
@@ -51,8 +51,9 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   });
 
   const launchpadToken = await hre.ethers.getContract<LaunchpadToken>("LaunchpadToken", deployer);
-  await launchpadToken.mint(deployer, ethers.parseUnits("4000", 18));
-  await launchpadToken.approve(launchpadDeploy.address, ethers.MaxUint256);
+
+  const network = hre.network.name.toLowerCase().includes("optimism") ? "Optimism" : "Arbitrum";
+  await launchpadToken.setMinter(deployments.chains[network].manager);
   console.log("Launchpad + Token deployed successfully!");
 };
 

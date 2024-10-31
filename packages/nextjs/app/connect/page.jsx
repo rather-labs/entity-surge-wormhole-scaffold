@@ -2,7 +2,7 @@
 
 import "./page.css";
 import WormholeConnect, { nttRoutes } from "@wormhole-foundation/wormhole-connect";
-import deployment from "~~/contracts/deployment.json";
+import deployment from "~~/deployments/deployment.json";
 
 /* export const metadata = getMetadata({
   title: "Entity Surge + Wormhole Connect",
