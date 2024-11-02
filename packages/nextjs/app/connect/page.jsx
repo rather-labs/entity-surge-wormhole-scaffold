@@ -2,7 +2,8 @@
 
 import "./page.css";
 import WormholeConnect, { nttRoutes } from "@wormhole-foundation/wormhole-connect";
-import deployment from "~~/deployments/deployment.json";
+
+//import deployment from "~~/deployments/deployment.json";
 
 /* export const metadata = getMetadata({
   title: "Entity Surge + Wormhole Connect",
@@ -10,54 +11,77 @@ import deployment from "~~/deployments/deployment.json";
 }); */
 
 const wormholeConfig = {
-  network: "Mainnet", // from deployment.json of the NTT deployment directory
+  network: "Testnet", // from deployment.json of the NTT deployment directory
   //networks: ['sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'], // from https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/chains.ts#L170
-  chains: Object.keys(deployment.chains),
+  chains: ["Sepolia", "ArbitrumSepolia"],
   // tokens: ['FTTsep', 'FTTsol'],  // this will limit the available tokens that can be transferred to the other chain
   // routes: ['nttManual'], // this will limit the available routes - from https://github.com/wormhole-foundation/wormhole-connect/blob/d7a6b67b18db2c8eb4a249d19ef77d0174deffbe/wormhole-connect/src/config/types.ts#L70
   rpcs: {
-    Polygon: "https://polygon.llamarpc.com",
-    Arbitrum: "https://arb1.arbitrum.io/rpc",
-    Optimism: "https://mainnet.optimism.io",
+    Sepolia: "https://rpc.ankr.com/eth_sepolia",
+    BaseSepolia: "https://base-sepolia-rpc.publicnode.com",
+    ArbitrumSepolia: "https://sepolia-rollup.arbitrum.io/rpc",
   },
-
   routes: [
     ...nttRoutes({
       tokens: {
-        LNCH: Object.keys(deployment.chains).map(chain => ({
-          chain,
-          manager: deployment.chains[chain].manager,
-          token: deployment.chains[chain].token,
-          transceiver: [
-            {
-              address: deployment.chains[chain].transceivers.wormhole.address,
-              type: "wormhole",
-            },
-          ],
-        })),
+        NTTTT: [
+          {
+            chain: "Sepolia",
+            manager: "0xE2A2bedF4E404A1CCE742AcC08abBedf2c51C4dF",
+            token: "0xA0e4C6FA5dFc8d68C06C4Caefa0439B4dFC2F697",
+            transceiver: [
+              {
+                address: "0xccd630AD8030694eDe09d90991edff96ADcdBB61",
+                type: "wormhole",
+              },
+            ],
+          },
+          {
+            chain: "ArbitrumSepolia",
+            manager: "0xFb9d0D37aEe1706A8c8E722e8Bc843fb48978969",
+            token: "0x183Ae4A056566803a10d7FDF85b723FcCd54b926",
+            transceiver: [
+              {
+                address: "0x1a46812208707D009D1E871453Fb62d76d118A0f",
+                type: "wormhole",
+              },
+            ],
+          },
+        ],
       },
     }),
     /* other routes */
   ],
-  tokensConfig: Object.fromEntries(
-    Object.keys(deployment.chains).map(chain => [
-      "LNCH-" + chain,
-      {
-        key: "LNCH-" + chain,
-        symbol: "LNCH",
-        nativeChain: chain,
-        displayName: `LNCH (${chain})`,
-        tokenId: {
-          chain,
-          address: deployment.chains[chain].token,
-        },
-        coinGeckoId: "test",
-        icon: "https://wormhole.com/token.png",
-        color: "#00C3D9",
-        decimals: 18,
+  tokensConfig: {
+    NTTTTsep: {
+      key: "NTTTTsep",
+      symbol: "NTTTT",
+      nativeChain: "Sepolia", // will be shown as native only on this chain, otherwise as "Wormhole wrapped"
+      displayName: "NTTTT (Sep)", // name that is displayed in the Route
+      tokenId: {
+        chain: "Sepolia",
+        address: "0xA0e4C6FA5dFc8d68C06C4Caefa0439B4dFC2F697", // token address
       },
-    ]),
-  ),
+      coinGeckoId: "test",
+      icon: "https://wormhole.com/token.png",
+      color: "#00C3D9",
+      decimals: 18,
+    },
+    NTTTTsol: {
+      key: "NTTTTsol",
+      symbol: "NTTTT",
+      nativeChain: "ArbitrumSepolia", // will be shown as native only on this chain, otherwise as "Wormhole wrapped"
+      displayName: "NTTTT (ArbitrumSepolia)", // name that is displayed in the Route
+      tokenId: {
+        chain: "ArbitrumSepolia",
+        address: "0x183Ae4A056566803a10d7FDF85b723FcCd54b926", // token address
+      },
+      coinGeckoId: "test",
+      icon: "https://wormhole.com/token.png",
+      color: "#00C3D9",
+      decimals: 18,
+    },
+  },
 };
 
 const theme = {
