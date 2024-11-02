@@ -4,8 +4,8 @@
 rm -rf packages/hardhat/deployments/* packages/nextjs/contracts/deployedContracts.ts
 touch packages/nextjs/contracts/deployedContracts.ts
 
-NETWORK_1=arbitrum
-NETWORK_1U=Arbitrum
+NETWORK_1=polygon
+NETWORK_1U=Polygon
 NETWORK_2=optimism
 NETWORK_2U=Optimism
 
