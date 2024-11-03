@@ -8,6 +8,8 @@ The primary objectives for this submission are:
 2. Enhanced Token Accessibility: Allow users to move their tokens easily, making them accessible across multiple chains while keeping the Launchpad's token architecture flexible.
 3. Token Distribution via Ticket Raffle (Entity Surge): Leverage Entity's cross-chain launchpad to distribute tokens from various projects through its tickets raffle system, broadening token access and user engagement.
 
+#### Full walkthrough [video here](https://drive.google.com/file/d/1kh0fnQaSrdNz5Ib0-h9bvmrpJfxf9kNt/view?usp=sharing).
+
 ## Setup and Configuration of NTT Tokens on Entity Launchpad
 
 The `setup.sh` script provides an automated, one-step process to deploy and configure Native Token Transfer tokens on Entity's Launchpad across two networks, specifically designed for use with Wormhole's cross-chain messaging. This script is located at the root of the repository. While this script focuses only on 2 networks, it is possible to seamlessly expand to more than that as long as these are the supported NTT chains.
