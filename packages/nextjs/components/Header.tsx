@@ -26,7 +26,7 @@ export const menuLinks: HeaderMenuLink[] = [
   },
   {
     label: "Connect",
-    href: "/connect",
+    href: "https://entity-wormhole-connect.vercel.app/",
     icon: <ArrowsRightLeftIcon className="h-4 w-4 relative bottom-0.5" />,
   },
 ];
