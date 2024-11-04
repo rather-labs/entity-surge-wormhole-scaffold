@@ -1,14 +1,11 @@
 "use client";
 
-import React, { Suspense } from "react";
-import dynamic from "next/dynamic";
+import React, { Suspense, useEffect, useRef } from "react";
+import { wormholeConnectHosted } from "./hosted";
+import { nttRoutes } from "./nttRoutes";
 import "./page.css";
-import WormholeConnect, { WormholeConnectConfig, nttRoutes } from "@wormhole-foundation/wormhole-connect";
+import type { WormholeConnectConfig, WormholeConnectTheme } from "@wormhole-foundation/wormhole-connect";
 
-// Disable SSR for WormholeConnect
-const WormholeConnectNoSSR = dynamic(() => Promise.resolve(WormholeConnect), { ssr: false });
-
-// Synchronous wormholeConfig setup
 const wormholeConfig: WormholeConnectConfig = {
   network: "Testnet",
   chains: ["Sepolia", "ArbitrumSepolia"],
@@ -77,19 +74,32 @@ const wormholeConfig: WormholeConnectConfig = {
   },
 };
 
-const theme = {
+const theme: WormholeConnectTheme = {
   mode: "dark",
-  primary: "#077f75",
-  secondary: "#044c46",
-  text: "#F9FBFF",
-  textSecondary: "#F9FBFF",
-  error: "#FF8863",
-  success: "#83ff8c",
-  badge: "#385183",
-  font: "Century Gothic,CenturyGothic,AppleGothic,sans-serif",
+  // primary: "#077f75",
+  // secondary: "#044c46",
+  // text: "#F9FBFF",
+  // textSecondary: "#F9FBFF",
+  // error: "#FF8863",
+  // success: "#83ff8c",
+  // badge: "#385183",
+  // font: "Century Gothic,CenturyGothic,AppleGothic,sans-serif",
 };
 
 const Connect = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (ref.current) {
+        console.log("connected");
+        wormholeConnectHosted(ref.current, { config: wormholeConfig, theme });
+        clearInterval(interval);
+      }
+      console.log("not connected");
+    }, 1000);
+  }, []);
+
   return (
     <>
       <div className="text-center mt-0 bg-base-300 px-10 pt-10 pb-8">
@@ -97,9 +107,7 @@ const Connect = () => {
         <p className="text-neutral">Transfer NTT-enabled Tokens Across Supported Chains.</p>
       </div>
       <Suspense fallback={<div>Loading Wormhole Connect...</div>}>
-        <div className="wormhole-wrapper">
-          <WormholeConnectNoSSR config={wormholeConfig} theme={theme} />
-        </div>
+        <div className="wormhole-wrapper" ref={ref}></div>
       </Suspense>
     </>
   );
